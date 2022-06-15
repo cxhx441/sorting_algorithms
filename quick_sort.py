@@ -1,3 +1,4 @@
+# TODO try implementing in place https://www.youtube.com/watch?v=Hoixgm4-P4M
 def quick_sort(arr):
     if len(arr) < 2:
         return arr
@@ -14,3 +15,4 @@ def quick_sort(arr):
             above.append(arr[i])
 
     return quick_sort(below) + [arr[pivot_idx]] + quick_sort(above)
+
