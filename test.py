@@ -3,6 +3,7 @@ from insertion_sort import insertion_sort
 from bubble_sort import bubble_sort
 from selection_sort import selection_sort
 from quick_sort import quick_sort
+from quick_sort import quick_sort_in_place
 from shell_sort import shell_sort
 
 class MyTests(unittest.TestCase):
@@ -33,7 +34,7 @@ class MyTests(unittest.TestCase):
         self.python_sorted_lists = []
         for l in self.my_unsorted_lists:
             self.python_sorted_lists.append(l.copy())
-        for l in self.python_sorted_lists: 
+        for l in self.python_sorted_lists:
             l.sort()
 
 
@@ -80,6 +81,14 @@ class MyTests(unittest.TestCase):
 
     def test_quick_sort(self):
         self.my_unsorted_lists = [quick_sort(l) for l in self.my_unsorted_lists]
+
+        for idx in range(len(self.my_unsorted_lists)):
+            my_sorted = self.my_unsorted_lists[idx]
+            python_sorted = self.python_sorted_lists[idx]
+            self.assertEqual(my_sorted, python_sorted)
+
+    def test_quick_sort_in_place(self):
+        self.my_unsorted_lists = [quick_sort_in_place(l) for l in self.my_unsorted_lists]
 
         for idx in range(len(self.my_unsorted_lists)):
             my_sorted = self.my_unsorted_lists[idx]
