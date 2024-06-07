@@ -1,15 +1,21 @@
 # TODO try implementing in place https://www.youtube.com/watch?v=Hoixgm4-P4M
+def median_of_three(arr, low, high):
+    mid = low + (high - low) // 2
+    sorted_three = sorted([arr[low], arr[mid], arr[high]])
+    arr[low], arr[mid], arr[high] = sorted_three
+    return mid
 def quick_sort_in_place(arr):
     def helper(left, right):
         if left >= right:
             return
         i = left
         j = right
-        pivot = ((j-i) // 2) + i
-        # swap element at pivot and end
+        # pivot = ((j-i) // 2) + i
+        pivot = median_of_three(arr, left, right)
+        # swap element at pivot and end, to get it out of the way
         arr[pivot], arr[j] = arr[j], arr[pivot]
         pivot = j
-        j -= 1
+        j -= 1 # i, j are the left, right of unsorted section.
         while i < j:
             if arr[i] <= arr[pivot]:
                 i += 1
@@ -43,20 +49,24 @@ def quick_sort_in_place(arr):
 # quick_sort_in_place(arr)
 # print(arr)
 
+
 def quick_sort(arr):
     if len(arr) < 2:
         return arr
 
-    pivot_idx = len(arr)//2
+    # pivot = len(arr)//2
+    pivot = median_of_three(arr, 0, len(arr)-1)
     below, above = [], []
     for i in range(len(arr)):
-        if i == pivot_idx:
+        if i == pivot:
             continue
 
-        if arr[i] <= arr[pivot_idx]:
+        if arr[i] <= arr[pivot]:
             below.append(arr[i])
         else:
             above.append(arr[i])
 
-    return quick_sort(below) + [arr[pivot_idx]] + quick_sort(above)
+    return quick_sort(below) + [arr[pivot]] + quick_sort(above)
 
+def quick_sort_iterative_in_place(arr):
+    pass
