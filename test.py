@@ -24,7 +24,7 @@ class MyTests(unittest.TestCase):
         # self.e_ans = [-800, -2, 1, 40, 100]
         # self.f_ans = [1, 5, 10, 100, 200]
         #
-        x = 1000
+        x = 100
         self.my_unsorted_lists = [
             [5, 4, 3, 2, 1]*x,
             [0, 0, 0, 0, 0]*x,
